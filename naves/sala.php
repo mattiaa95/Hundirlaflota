@@ -46,23 +46,40 @@ float: left;
 }
 .row div:first-child {
   border-left: 0;
+}
+#entrada {
+    width: 235px;
+    height: 450px;
+    overflow: scroll;
+    background-color: rgb(84, 77, 80);
+}
+span.jugador1{
+  background-color: rgb(238, 134, 89);
+
+}
+span.jugador2{
+  background-color: rgb(166, 208, 246);
 
 }
 </style>
+<?php
+$jugador = $_REQUEST["jugador"];
+echo "<script>var jugador=\"$jugador\"</script>";
+ ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-
 
 function enviar() {
         var xmlhttp = new XMLHttpRequest();
         var datos=document.getElementById("jugador").value;
-        xmlhttp.open("GET", "getdatos.php?datos=" + datos, true);
+        xmlhttp.open("GET", "getdatos.php?datos=" + datos + "&jugador=" + jugador, true);
         xmlhttp.send();
     }
 
 function actualizar(){
-$('#entrada').load('getdatos.php');
+$('#entrada').load('getdatos.php?jugador='+jugador);
 }
+
 setInterval( "actualizar()", 800 );
 
 
@@ -242,9 +259,10 @@ setInterval( "actualizar()", 800 );
 </div>
 </div>
 <div class="entrada">
+<h4>CHAT JUGADORES</h4>
 <div id="entrada"></div>
 <input type="text" id="jugador" name="jugador" value="">
-<button type="button" name="button" onclick="enviar()">Enviar</button>
+<button type="button" name="button" onclick="enviar()" >Enviar</button>
 </div>
 </body>
 </html>

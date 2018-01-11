@@ -2,8 +2,9 @@
 
 error_reporting(0);
 $datos = $_REQUEST["datos"];
+$jugador = $_REQUEST["jugador"];
 $turno="jugador1";
-$jugador="jugador2";
+
 
 
 $jugador1 = array("0", "0", "0", "0", "0", "0", "0","0",
@@ -28,14 +29,14 @@ $jugador1disparado = array("0", "0", "0", "0", "0", "0", "0","0",
 $jugador2 = array("0", "0", "0", "0", "0", "1", "0", "0",
                   "0", "0", "1", "1", "0", "0", "0", "0",
                   "0", "0", "0", "0", "0", "0", "0", "0",
-                  "0", "0", "0", "0", "0", "0", "0", "0",
+                  "0", "0", "0", "0", "1", "0", "0", "0",
                   "0", "1", "0", "0", "1", "0", "0", "0",
                   "0", "1", "0", "0", "1", "0", "0", "0",
                   "0", "0", "1", "0", "1", "0", "0", "0",
                   "0", "0", "0", "0", "0", "0", "0", "X",);
 
 $jugador2disparado = array("D", "0", "0", "A", "0", "0", "0","0",
-                          "0", "0", "0", "A", "0", "0", "0","0",
+                          "0", "0", "D", "A", "0", "0", "0","0",
                           "0", "0", "D", "A", "0", "0", "0","0",
                           "0", "0", "0", "0", "0", "0", "0","0",
                           "0", "0", "0", "0", "0", "0", "0","0",
@@ -97,7 +98,7 @@ if ($datos == "") {
 //nada de nada.XD
 }else {
   if (($file = fopen("prueba.txt", "a")) !== FALSE) {
-    $linea = $datos."\n";
+    $linea = "<span class='".$jugador."'>".$jugador.": ".$datos."</span>\n";
       fwrite($file, $linea);
       fclose($file);
   }
@@ -105,7 +106,7 @@ if ($datos == "") {
 
   if (($file = fopen("prueba.txt", "r")) !== FALSE) {
       while (($datos = fgets($file)) !== FALSE) {
-        echo $jugador.": ".$datos." <br>";
+        echo $datos." <br>";
       }
       fclose($file);
   }

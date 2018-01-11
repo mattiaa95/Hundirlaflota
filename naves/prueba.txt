@@ -1,2 +1,2 @@
-hola
-adios
+<span class='jugador1'>jugador1: hola</span>
+<span class='jugador2'>jugador2: hola</span>
