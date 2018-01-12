@@ -8,18 +8,18 @@
   -o-box-sizing: border-box;
 }
 .tableros {
-  width: 780px;
+  width: 710px;
   margin: 0 auto;
 }
 #tablero1 {
-  width: 780px;
+  width: 410px;
   margin: 0;
   cursor: pointer;
 }
 #tablero2 {
-  width: 780px;
+  width: 410px;
   margin: 0;
-  cursor: pointer;
+  cursor: none;
 }
 #container {
 border: 3px solid #000;
@@ -47,11 +47,15 @@ float: left;
 .row div:first-child {
   border-left: 0;
 }
+
 #entrada {
-    width: 235px;
-    height: 450px;
     overflow: scroll;
+    width: 235px;
+    height: 300px;
     background-color: rgb(84, 77, 80);
+}
+.entrada{
+  float: left;
 }
 span.jugador1{
   background-color: rgb(238, 134, 89);
@@ -69,18 +73,26 @@ echo "<script>var jugador=\"$jugador\"</script>";
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
+
+///-----------------------------CHAT enviar mensajes
 function enviar() {
         var xmlhttp = new XMLHttpRequest();
         var datos=document.getElementById("jugador").value;
         xmlhttp.open("GET", "getdatos.php?datos=" + datos + "&jugador=" + jugador, true);
         xmlhttp.send();
     }
+//-----------------------------
 
+//-------------------actualiza en chat
 function actualizar(){
 $('#entrada').load('getdatos.php?jugador='+jugador);
 }
+//-----------------------------
 
+//------------intervalo de actualizacion
 setInterval( "actualizar()", 800 );
+//--------------------------
+
 
 
 </script>
@@ -88,7 +100,9 @@ setInterval( "actualizar()", 800 );
 
 </head>
 <body>
+
   <div class="tableros">
+      <h1>Hundir la Flota</h1>
 <div id="tablero1">
   <div id="container">
     <div class="row">
@@ -173,6 +187,15 @@ setInterval( "actualizar()", 800 );
     </div>
   </div>
 </div>
+
+<div class="entrada">
+<h4>CHAT JUGADORES</h4>
+<div id="entrada"></div>
+<input type="text" id="jugador" name="jugador" value="">
+<button type="button" name="button" onclick="enviar()" >Enviar</button>
+</div>
+
+
 <div id="tablero2">
   <div id="container">
     <div class="row">
@@ -258,11 +281,8 @@ setInterval( "actualizar()", 800 );
   </div>
 </div>
 </div>
-<div class="entrada">
-<h4>CHAT JUGADORES</h4>
-<div id="entrada"></div>
-<input type="text" id="jugador" name="jugador" value="">
-<button type="button" name="button" onclick="enviar()" >Enviar</button>
-</div>
+
+
+
 </body>
 </html>

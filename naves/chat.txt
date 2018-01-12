@@ -1,0 +1,16 @@
+<span class='jugador1'>jugador1: hola</span>
+<span class='jugador2'>jugador2: hola</span>
+<span class='jugador1'>jugador1: hola</span>
+<span class='jugador2'>jugador2: adios</span>
+<span class='jugador1'>jugador1: hola</span>
+<span class='jugador1'>jugador1: hasdasdfasd</span>
+<span class='jugador1'>jugador1: hola</span>
+<span class='jugador2'>jugador2: hola</span>
+<span class='jugador2'>jugador2: eyyy</span>
+<span class='jugador2'>jugador2: mattia eres una mierda</span>
+<span class='jugador1'>jugador1: hola</span>
+<span class='jugador1'>jugador1: hola</span>
+<span class='jugador2'>jugador2: jskabvgdhj</span>
+<span class='jugador2'>jugador2: eyyy</span>
+<span class='jugador2'>jugador2: hola</span>
+<span class='jugador2'>jugador2: holajhxdvsdzs</span>

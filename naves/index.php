@@ -6,7 +6,7 @@
 </style>
 <h1>hundirlaflota PARA JUGAR</h1>
 <br>
-<form action="sala.php">
+<form action="sala.php" method="post">
   <p>Selecciona jugador</p>
   <div>
     <input type="radio" id="contactChoice1"
