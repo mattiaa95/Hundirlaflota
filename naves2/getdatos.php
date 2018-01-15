@@ -9,16 +9,11 @@ $jugador = $_REQUEST["jugador"];
 $jugador1 = array();
 $jugador2 = array();
 //--------------------------fin array jugadores----------------------------------
-function generarbarcos(){
-  if (($file = fopen("tablero1.txt", "w")) !== FALSE) {
-      foreach ($jugador1 as $key => $value) {
-            $jugador1[$key]='0';
-        }
-      }
-         $jugador1concomas=implode(", ",$jugador1);
-         fwrite($file, $jugador1concomas);
-      fclose($file);
-    }
+function arrayrand($min, $max, $quantity) {
+    $numbers = range($min, $max);
+    shuffle($numbers);
+    return array_slice($numbers, 0, $quantity);
+}
 //-----------------------------funcion para pintar tableros con jquery--------------------------
 function pintartableroa($jugadorcual,$mascara,$tablero){
   //la mascara es para activar lque no se vean los barcos en el jugador opuesto
@@ -127,6 +122,40 @@ if (($file = fopen("tablero2.txt", "r")) !== FALSE) {
     fclose($file);
 }
 //------------fin cargar los arrays--------------
+
+if ($numtur == 0) {
+  $valores=arrayrand(0,64,16);
+  if (($file = fopen("tablero1.txt", "w")) !== FALSE) {
+
+      foreach ($jugador1 as $key => $value) {
+          $imprime=0;
+        foreach ($valores as $keyV => $valueV) {
+          if ($key == $valueV) {
+            $imprime=1;
+          }
+        }
+        if ($imprime == 1) {
+            $jugador1[$key]='1';
+        }else {
+            $jugador1[$key]='0';
+        }
+
+        }
+
+         $jugador1concomas=implode(", ",$jugador1);
+         fwrite($file, $jugador1concomas);
+      fclose($file);
+    }
+
+
+    if (($file = fopen("partida.txt", "w")) !== FALSE) {
+      @$numtur+=1;
+      $meterdatos=$turno.";".$numtur;
+        fwrite($file, $meterdatos);
+        fclose($file);
+    }
+  }
+
 //-----------escribir posicion------------
 
 if ($posi == "") {
