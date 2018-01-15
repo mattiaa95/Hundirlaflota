@@ -7,6 +7,16 @@
   -moz-box-sizing: border-box;
   -o-box-sizing: border-box;
 }
+.popup{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  background-color: rgb(114, 244, 209);
+  border-radius: 4px;
+  padding: 20px;
+}
 h1{
   color: white;
   font-size: 40px;
@@ -20,6 +30,7 @@ body{
   background-position: center;
   background-repeat: no-repeat, repeat;
 }
+
 .tableros {
   width: 710px;
   margin: 0 auto;
@@ -185,6 +196,14 @@ echo "<script>var jugador=\"$jugador\"</script>";
 <input type="text" id="jugador" name="jugador" value="" maxlength="144">
 <button type="button" name="button" onclick="enviar()" >Enviar</button>
 </div>
+
+<div id="ganajugador1" class="popup">
+       <div class="content"><h1>Gana Jugador 1</h1></div>
+   </div>
+
+<div id="ganajugador2" class="popup">
+        <div class="content"><h1>Gana Jugador 2</h1></div>
+    </div>
 
 
 <div id="tablero2">

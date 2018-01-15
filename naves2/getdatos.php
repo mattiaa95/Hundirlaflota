@@ -88,9 +88,14 @@ if ($mensaje == "") {
 
 //----------------------------------------------------------main------------------------------------------------------
 
+
+
 if (($file = fopen("partida.txt", "r")) !== FALSE) {
     while (($datos = fgets($file)) !== FALSE) {
-       list($turno,$numtur)=explode(";",$datos);
+       list($turno,$numtur,$generado1,$generado2)=explode(";",$datos);
+       if ($numtur == "fin") {
+
+       }
     }
     fclose($file);
 }
@@ -121,10 +126,11 @@ if (($file = fopen("tablero2.txt", "r")) !== FALSE) {
     }
     fclose($file);
 }
+
 //------------fin cargar los arrays--------------
 
-if ($numtur == 0) {
-  $valores=arrayrand(0,64,16);
+if ($generado1 == 0) {
+  $valores=arrayrand(0,64,5);
   if (($file = fopen("tablero1.txt", "w")) !== FALSE) {
 
       foreach ($jugador1 as $key => $value) {
@@ -149,12 +155,45 @@ if ($numtur == 0) {
 
 
     if (($file = fopen("partida.txt", "w")) !== FALSE) {
-      @$numtur+=1;
-      $meterdatos=$turno.";".$numtur;
+      @$generado1+=1;
+      $meterdatos=$turno.";".$numtur.";".$generado1.";".$generado1;
         fwrite($file, $meterdatos);
         fclose($file);
     }
   }
+
+  if ($generado2 == 0) {
+    $valores=arrayrand(0,64,5);
+    if (($file = fopen("tablero2.txt", "w")) !== FALSE) {
+
+        foreach ($jugador2 as $key => $value) {
+            $imprime=0;
+          foreach ($valores as $keyV => $valueV) {
+            if ($key == $valueV) {
+              $imprime=1;
+            }
+          }
+          if ($imprime == 1) {
+              $jugador2[$key]='1';
+          }else {
+              $jugador2[$key]='0';
+          }
+
+          }
+
+           $jugador2concomas=implode(", ",$jugador2);
+           fwrite($file, $jugador2concomas);
+        fclose($file);
+      }
+
+
+      if (($file = fopen("partida.txt", "w")) !== FALSE) {
+        @$generado2+=1;
+        $meterdatos=$turno.";".$numtur.";".$generado1.";".$generado1;
+          fwrite($file, $meterdatos);
+          fclose($file);
+      }
+    }
 
 //-----------escribir posicion------------
 
@@ -187,7 +226,7 @@ if ($posi == "") {
           if ($yaclicado == 0) {
             if (($file = fopen("partida.txt", "w")) !== FALSE) {
               $numtur+=1;
-              $meterdatos="jugador2;".$numtur;
+              $meterdatos="jugador2;".$numtur.";".$generado1.";".$generado1;
                 fwrite($file, $meterdatos);
                 fclose($file);
             }
@@ -216,7 +255,7 @@ if ($posi == "") {
         if ($yaclicado == 0) {
           if (($file = fopen("partida.txt", "w")) !== FALSE) {
             $numtur+=1;
-            $meterdatos="jugador1;".$numtur;
+            $meterdatos="jugador1;".$numtur.";".$generado1.";".$generado1;
               fwrite($file, $meterdatos);
               fclose($file);
           }
@@ -225,7 +264,25 @@ if ($posi == "") {
 }
 
 //-------------
+$finjuegador1=0;
+$finjuegador2=0;
+foreach ($jugador1 as $key => $value) {
+  if ($value == "1") {
+    $finjuegador1+=1;
+  }
+}
+if ($finjuegador1 == 0) {
+  echo '<script>$(\'#ganajugador1\').show();</script>';
+}
 
+foreach ($jugador2 as $key => $value) {
+  if ($value == "1") {
+    $finjuegador2+=1;
+  }
+}
+if ($finjuegador2 == 0) {
+  echo '<script>$(\'#ganajugador2\').show();</script>';
+}
 //----------------
 
 //ejecutar funcion pintar tableros dependiendo del jugador

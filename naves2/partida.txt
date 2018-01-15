@@ -1,1 +1,1 @@
-jugador1;1
+jugador2;1;1;1

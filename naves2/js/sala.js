@@ -1,7 +1,9 @@
 var datos = "";
 $(document).ready(function(){
-  setInterval( "actualizar()", 800 );
-  setInterval(updateScroll,800);
+  setInterval( "actualizar()", 100 );
+  setInterval(updateScroll,1200);
+  $('#ganajugador1').hide();
+  $('#ganajugador2').hide();
 });
 
 function updateScroll(){
@@ -22,6 +24,7 @@ function enviarpos(pos) {
         pos=$(pos).attr('id');
         xmlhttp.open("POST", "getdatos.php?jugador=" + jugador + "&pos=" + pos, true);
         xmlhttp.send();
+        alert("has disparado");
     }
 //-------------------actualizar
 function actualizar(){
